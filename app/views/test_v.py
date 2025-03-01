@@ -1,6 +1,7 @@
 import ui
+from app.views.super_v import SuperView
 
-class TestView(ui.View):
+class TestView(SuperView):
     def __init__(self, model):
         self.model = model
 
@@ -14,7 +15,7 @@ class TestView(ui.View):
         button = ui.Button(title='Tap me!')
         button.center = (self.width * 0.5, self.height * 0.5)
         button.flex = 'LRTB'
-        button.action = button_tapped
-        self.add_subself(button)
-        self.present('sheet')
+        button.action = self.button_tapped
+        self.add_subview(button)
+        self.present('fullscreen')
         self.wait_modal()
