@@ -3,9 +3,10 @@
 # from app.views.parent.parent_view import ParentView
 # from app.ui.group_selecter import GroupSelecter
 # import app.data.app_data as app_data
-from app.controllers.group_chooser_c import GroupChooserControler
+# from app.controllers.group_chooser_c import GroupChooserControler
+from app.controllers.student_chooser_c import StudentChooserControler
 
 def run():
-	gcc = GroupChooserControler()
+	gcc = StudentChooserControler()
 	print('finished')
 run()
