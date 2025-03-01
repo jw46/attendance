@@ -1,19 +1,15 @@
-import ui
+from app.views.abstract_delegate import AbstractDelegate
+import app.apputil.config as config
+from app.data.export_student_attendance import ExportStudentAttendance
 
-class StudentDelegate (object):
-    def __init__(self, app_data):
-        self.app_data = app_data
+class StudentDelegate (AbstractDelegate):
+    def __init__(self, app_data, pv):
+        super().__init__(app_data)
+        self.pv = pv
 
     def tableview_did_select(self, tableview, section, row):
-        self.app_data.selected_student_index = int(row)
-        # tableview.close()
-
-    def tableview_did_deselect(self, tableview, section, row):
-        # Called when a row was de-selected (in multiple selection mode).
-        pass
-
-    def tableview_title_for_delete_button(self, tableview, section, row):
-        # Return the title for the 'swipe-to-***' button.
-        return 'Delete'
-
-    # def tableview_accessory_button_tapped(self, tableview, section, row):
+        self.app_data.selected_student = self.app_data.students_df[config.NAME_COLUMN_NAME].loc[row]
+        xsa = ExportStudentAttendance(self.app_data, self.pv)
+        xsa.export()
+        self.pv.close()
+        self.app_data.current_ui = 'Quit app'

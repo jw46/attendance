@@ -6,9 +6,10 @@ from app.ui.class_title_editor import ClassTitleEditor
 from app.ui.date_selecter import DateSelecter
 from app.ui.export_spreadsheet import ExportSpreadsheet
 from app.ui.export_student_attendance import ExportStudentAttendance
-from app.ui.edit_students import EditStudent
+from app.ui.edit_students import EditStudents
 from app.ui.backup_data import BackupData
 from app.ui.quit_app import QuitApp
+from app.ui.alert import Alert
 from app.ui.menu import Menu
 
 class AppData:
@@ -18,19 +19,23 @@ class AppData:
         self.selected_group: str = 'No group selected'
         self.selected_date = util.get_today()
         self.students_df: pd.DataFrame = None
-        self.class_df: pd.DataFrame = None
+        self.selected_student: str = None
+        self.class_df: pd.DataFrame = 'No student selected'
         self.sc_object = None
         self.menu = {
         		'Select a different group': GroupSelecter(self),
         		'Record attendance': RecordAttendance(self),
         		'Change date': DateSelecter(self),
         		'Record class title': ClassTitleEditor(self),
-        		'Export spreadsheet': ExportSpreadsheet(self),
+        	# 	'Export spreadsheet': ExportSpreadsheet(self),
         		'Export student attendance': ExportStudentAttendance(self),
-        		'Edit students': EditStudent(self),
-                'Backup data': BackupData(self),
+        	# 	'Edit students': EditStudent(self),
+            #   'Backup data': BackupData(self),
         		'Quit app': QuitApp(self),
-        		'Menu': Menu(self)
+        		'Menu': Menu(self),
+                'Alert': Alert(self)
         	}
         self.current_ui: str = 'Select a different group'
+        self.next_ui: str = ''
         self.waiting = False
+        self.alert_text = ''

@@ -35,7 +35,7 @@ class AbstractViewer(ABC):
         self.info_label.text = self.app_data.selected_group[20:-15] + '    ' + self.app_data.selected_date
 
     def close_button_clicked(self, sender):
-        pass
+        self.pv.close()
 
     def with_close_button(self, screen_size):
         self.close_button = ui.Button(title='Done')
@@ -58,9 +58,10 @@ class AbstractViewer(ABC):
             self.pv.add_subview(self.close_button)
 
     def close(self):
-        self.pv.remove_subview(self.tv)
-        self.pv.remove_subview(self.info_label)
-        if self.has_close_button:
-            self.pv.remove_subview(self.close_button)
+        self.pv.close()
+        # self.pv.remove_subview(self.tv)
+        # self.pv.remove_subview(self.info_label)
+        # if self.has_close_button:
+        #     self.pv.remove_subview(self.close_button)
 
     

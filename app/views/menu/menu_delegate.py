@@ -1,8 +1,8 @@
-import ui
+from app.views.abstract_delegate import AbstractDelegate
 
-class MenuDelegate (object):
+class MenuDelegate (AbstractDelegate):
     def __init__(self, app_data):
-        self.app_data = app_data
+        super().__init__(app_data)
         self.menu_list = list(self.app_data.menu.keys())
 
     def tableview_did_select(self, tableview, section, row):

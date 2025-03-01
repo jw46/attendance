@@ -37,7 +37,9 @@ class DataLoader:
     """
     def load_groups(self):
         data = os.listdir(util.get_group_folder())
-        return self.get_one_file_per_group(data)
+        groups = self.get_one_file_per_group(data)
+        sorted = groups.sort()
+        return groups
 
     """
     Given the latest filename of a group from the groups folder, searches the attenace forlder for a file already saved today for the group
@@ -49,6 +51,8 @@ class DataLoader:
         group_att = list(filter(lambda x: x.startswith(group_file_name[0:-14]), att))
         group_att_today = list(filter(lambda x: util.get_today() in x, group_att))
         if len(group_att_today) == 0:
-            return loader.open_df(util.get_group_folder() + group_file_name)
-        return loader.open_df(util.get_att_folder() + group_att_today[0])
+            df = loader.open_df(util.get_group_folder() + group_file_name)
+        else:
+            df = loader.open_df(util.get_att_folder() + group_att_today[0])
+        return df.sort_values(['nazwisko', 'imie', 'imie2'], ascending=True)
     
