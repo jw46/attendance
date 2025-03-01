@@ -1,4 +1,4 @@
-import ui
+import ui_old
 import app.views.abstract_viewer as abstract_viewer
 from app.views.menu.menu_data_source import MenuDataSource
 from app.views.menu.menu_delegate import MenuDelegate
@@ -18,5 +18,5 @@ class MenuViewer(abstract_viewer.AbstractViewer):
         self.tv.delegate = tv_delegate
         self.tv.name = 'Main menu'
         self.tv.allows_selection = True
-        self.tv.row_height = int(ui.get_screen_size()[1] * 0.7 / len(self.app_data.menu))
+        self.tv.row_height = int(ui_old.get_screen_size()[1] * 0.7 / len(self.app_data.menu))
         super().show()

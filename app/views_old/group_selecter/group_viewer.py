@@ -1,4 +1,4 @@
-import ui
+import ui_old
 from app.views.abstract_viewer import AbstractViewer
 import app.views.group_selecter.group_data_source as group_data_source
 import app.views.group_selecter.group_delegate as group_delegate

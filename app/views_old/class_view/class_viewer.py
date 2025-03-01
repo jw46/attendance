@@ -1,4 +1,4 @@
-import ui
+import ui_old
 from app.views.abstract_viewer import AbstractViewer
 from app.views.class_view.class_data_source import ClassDataSource
 from app.views.class_view.date_delegate_delegate import DateDelegate

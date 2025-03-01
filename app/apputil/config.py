@@ -7,5 +7,5 @@ OPTIONS = ['U', 'O', 'N', 'S']
 ATTENDANCE_COLUMN_NAME = 'attendence'
 CLASS_DATES_COLUMN_NAME = 'Class Dates'
 CLASS_TITLE_COLUMN_NAME = 'Class Title'
-
+STANDARD_BUTON_TEXT = 'Done'
 DOCUMENTS_FOLDER = '/private/var/mobile/Containers/Data/Application/EC803869-F9F4-4BC3-8182-AEF407918EFA/Documents/'

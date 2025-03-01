@@ -1,4 +1,4 @@
-from app.views.abstract_delegate import AbstractDelegate
+from app.aui.generic.abstract_delegate import AbstractDelegate
 
 
 class StudentChooserDelegate(AbstractDelegate):

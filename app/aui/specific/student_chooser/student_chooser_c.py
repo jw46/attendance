@@ -1,8 +1,8 @@
 import ui
-from app.views.student_chooser_v import StudentChooserView
-from app.models.student_chooser_m import StudentChooserModel
-from app.views.student_chooser_d import StudentChooserDelegate
-from app.views.table_df_ds import TableDfDataSource
+from app.aui.specific.student_chooser.student_chooser_v import StudentChooserView
+from app.aui.specific.student_chooser.student_chooser_m import StudentChooserModel
+from app.aui.specific.student_chooser.student_chooser_d import StudentChooserDelegate
+from app.aui.generic.table_df_bar.table_df_bar_ds import TableDfBarDataSource
 
 class StudentChooserControler:
     def __init__(self):
@@ -14,7 +14,7 @@ class StudentChooserControler:
         table_size = (ui.get_screen_size()[0],int(ui.get_screen_size()[1] * 0.9))
         self.view.tv.width = table_size[0]
         self.view.tv.height = table_size[1]
-        self.view.tv.data_source = TableDfDataSource(model, table_size)
+        self.view.tv.data_source = TableDfBarDataSource(model, table_size)
         self.view.present('fullscreen')
         self.view.wait_modal()
         selected_student = model.df['name'].loc[self.result]

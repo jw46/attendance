@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import ui
+import ui_old
 """
 
 """
@@ -9,8 +9,8 @@ class AbstractViewer(ABC):
         self.has_close_button = has_close_button
         self.app_data = app_data
         self.pv = parent_view
-        self.tv = ui.TableView()
-        screen_size = ui.get_screen_size()
+        self.tv = ui_old.TableView()
+        screen_size = ui_old.get_screen_size()
         self.tv.width = int(screen_size[0])
         self.tv.height = int(screen_size[1] * (100 - self.button_height_percent) / 110)
         self.tv.y = int(screen_size[1] * self.button_height_percent / 110)
@@ -20,7 +20,7 @@ class AbstractViewer(ABC):
         self.add_info_label(screen_size)
 
     def add_info_label(self, screen_size):
-        self.info_label = ui.Label()
+        self.info_label = ui_old.Label()
         if self.has_close_button:
             self.info_label.width = 200 - int(screen_size[0])
             self.info_label.x = 200
@@ -38,7 +38,7 @@ class AbstractViewer(ABC):
         pass
 
     def with_close_button(self, screen_size):
-        self.close_button = ui.Button(title='Done')
+        self.close_button = ui_old.Button(title='Done')
         self.close_button.action = self.close_button_clicked
         self.close_button.width = 200
         self.close_button.height = int(screen_size[1] * self.button_height_percent / 110)

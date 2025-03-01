@@ -1,5 +1,5 @@
 import ui
-from app.views.super_v import SuperView
+from app.aui.generic.super_v import SuperView
 
 class TestView(SuperView):
     def __init__(self, model):

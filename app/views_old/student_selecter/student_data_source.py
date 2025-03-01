@@ -1,4 +1,4 @@
-import ui
+import ui_old
 import sys
 import traceback
 import pandas as pd
@@ -51,16 +51,16 @@ class StudentDataSource (object):
     When the use click on the button in the SegmentedControl record_selection is called to save the selection
     """
     def tableview_cell_for_row(self, tableview, section, row):
-        cell = ui.TableViewCell()
+        cell = ui_old.TableViewCell()
         cell.bounds = (0, 0, tableview.width, tableview.row_height)
         student_name = self.get_student_name(row)
         sc = self.get_sc(row)
         cell.content_view.add_subview(sc)
-        name_label = ui.Label()
+        name_label = ui_old.Label()
         name_label.border_width = 0.5
         name_label.text = student_name
         name_label.frame = (sc.width, 0, tableview.width  - sc.width, tableview.row_height)
-        name_label.alignment = ui.ALIGN_LEFT
+        name_label.alignment = ui_old.ALIGN_LEFT
         cell.content_view.add_subview(name_label)
         return cell
 

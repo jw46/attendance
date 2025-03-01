@@ -1,6 +1,6 @@
-import ui
+import ui_old
 
-class ParentView(ui.View):
+class ParentView(ui_old.View):
     def __init__(self):
         pass
     

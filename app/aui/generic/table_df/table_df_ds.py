@@ -1,5 +1,5 @@
 import ui
-from app.views.abstract_data_source import AbstractDataSource
+from app.aui.generic.abstract_data_source import AbstractDataSource
 
 class TableDfDataSource (AbstractDataSource):
     def __init__(self, model, table_size):
@@ -51,4 +51,4 @@ class TableDfDataSource (AbstractDataSource):
         return cell
 
     def tableview_title_for_header(self, tableview, section):
-        return 'Student Chooser'
+        return 'Table from DataFrame'

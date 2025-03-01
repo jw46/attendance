@@ -4,7 +4,7 @@
 # from app.ui.group_selecter import GroupSelecter
 # import app.data.app_data as app_data
 # from app.controllers.group_chooser_c import GroupChooserControler
-from app.controllers.student_chooser_c import StudentChooserControler
+from app.aui.specific.student_chooser.student_chooser_c import StudentChooserControler
 
 def run():
 	gcc = StudentChooserControler()
