@@ -13,24 +13,24 @@ class TableDfDataSource (AbstractDataSource):
         return sum(list(map(lambda x: x[1], l)))
 
     def get_left(self, l, x):
-        max_index = list(self.model.df.columns).index(x[0])
+        max_index =self.model.visible_columns.index(x[0])
         sub_list = l[:max_index]
         return self.get_item_widths(sub_list)
 
     def get_max_column_chars(self, x):
         num_chars = self.model.df[x].str.len().max()
         if pd.isna(num_chars) or num_chars == 0:
-            return 40
+            return 30
         return int(num_chars)
 
     def get_column_x_widths(self):
-        max_lengths = list(map(lambda x: (x, self.get_max_column_chars(x)), self.model.df.columns))
+        max_lengths = list(map(lambda x: (x, self.get_max_column_chars(x)), self.model.visible_columns))
         item_widths = list(map(lambda x: (x[0], int(x[1] / self.get_item_widths(max_lengths) * ui.get_screen_size()[0])), max_lengths))
         l = list(map(lambda x: (x[0], x[1], self.get_left(item_widths, x)), item_widths))
         return {a:(b,c) for a,b,c in l}
     
     def tableview_number_of_rows(self, tableview, section):
-        return len(self.model.df.index) -1
+        return len(self.model.df)
 
     def add_label(self, row, column_name):
         label = ui.Label(text=str(self.model.df[column_name].loc[row]))
@@ -41,7 +41,7 @@ class TableDfDataSource (AbstractDataSource):
         return tf
 
     """
-    Finds the location i nthe dataframe of the ui widget
+    Finds the location in the dataframe of the ui widget
     """
     def get_widget_location(self, sender):
         count = 0
@@ -65,6 +65,7 @@ class TableDfDataSource (AbstractDataSource):
             widget.width = self.column_x_widths[c[0]][0]
             widget.y = 0
             widget.height = 50
+            widget.alignment = ui.ALIGN_LEFT
             self.widget_list[row][c[0]] = widget
             cell.add_subview(widget)
 

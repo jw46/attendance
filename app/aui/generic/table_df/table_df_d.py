@@ -8,4 +8,4 @@ class Delegate(AbstractDelegate):
 
     def tableview_did_select(self, tableview, section, row):
         self.controller.result = row
-        self.controller.view.close()
+        self.controller.app_view.remove_subview(self.controller.view)

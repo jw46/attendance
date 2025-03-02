@@ -1,9 +1,10 @@
 import ui
-from app.aui.specific.group_chooser.view import View
-from app.aui.specific.group_chooser.model import Model
+from app.aui.specific.add_student.view import View
+from app.aui.specific.add_student.model import Model
 from app.aui.generic.table_df.table_df_d import Delegate
-from app.aui.generic.table_df_bar.table_df_bar_ds import TableDfBarDataSource
+from app.aui.specific.add_student.data_source import DataSource
 import app.data.app_data as app_data
+import app.data.student_saver as ss
 
 class Controller:
     def __init__(self, app_view):
@@ -12,9 +13,10 @@ class Controller:
         self.view = View(model, self)
         self.view.tv.delegate = Delegate(self)
         self.result = None
-        self.view.tv.data_source = TableDfBarDataSource(model, self.view.table_size)
+        self.view.tv.data_source = DataSource(model, self.view.table_size)
         app_view.add_subview(self.view)
         self.view.wait_modal()
-        app_data.selected_group = model.df['Groups'].loc[self.result]
-        app_data.selected_student = None
+        ss.add_and_save(model.df)
         app_data.current_ui = 'Menu'
+
+

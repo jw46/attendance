@@ -11,7 +11,6 @@ class AbstractDataSource (ABC):
         return 1
 
     def tableview_cell_for_row(self, tableview, section, row):
-        print('Abstract tableview_cell_for_row')
         pass
 
     def tableview_title_for_header(self, tableview, section):

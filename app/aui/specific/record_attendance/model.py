@@ -9,5 +9,6 @@ class Model(TableDfBarModel):
         super().__init__(source_filepath)
         self.df = al.load()
         self.column_widgets = [('name', 'label')]
+        self.visible_columns = list(map(lambda x: x[0], self.column_widgets))
         self.button_text = config.STANDARD_BUTON_TEXT
         self.table_name = 'Select a student'

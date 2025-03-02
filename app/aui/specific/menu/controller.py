@@ -7,12 +7,13 @@ import app.data.app_data as app_data
 import app.apputil.util as util
 
 class Controller:
-    def __init__(self):
+    def __init__(self, app_view):
         model = Model(util.get_menu_filepath())
+        self.app_view = app_view
         self.view = View(model, self)
         self.view.tv.delegate = Delegate(self)
         self.result = None
         self.view.tv.data_source = TableDfBarDataSource(model, self.view.table_size)
-        self.view.present('fullscreen')
+        app_view.add_subview(self.view)
         self.view.wait_modal()
         app_data.current_ui = model.df['menu'].loc[self.result]

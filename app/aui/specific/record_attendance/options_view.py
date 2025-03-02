@@ -9,5 +9,7 @@ class OptionsView:
         sc = ui.SegmentedControl()
         sc.segments = config.OPTIONS
         sc.background_color = 'white'
+        sc.width = 300
+        sc.heigh = 70
         return sc
 

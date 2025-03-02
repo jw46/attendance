@@ -9,6 +9,7 @@ class Model(TableDfBarModel):
     def __init__(self, source_filepath=None):
         super().__init__(source_filepath)
         self.df = cl.load()
-        self.column_widgets = [('Class Dates', 'label'), ('Class Title', 'text_field')]
+        self.column_widgets = [('Class Dates', 'label'), ('Class Title1', 'text_field'), ('Class Title2', 'text_field')]
+        self.visible_columns = list(map(lambda x: x[0], self.column_widgets))
         self.button_text = config.STANDARD_BUTON_TEXT
         self.table_name = 'Choose Class Date'

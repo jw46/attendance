@@ -6,7 +6,7 @@ import app.apputil.config as config
 
 class DataSource(TableDfBarDataSource):
     def __init__(self, model, table_size):
-        super().__init__(model, (int(table_size[0] - 300), table_size[1] - 75))
+        super().__init__(model, (int(table_size[0]), table_size[1] - 75))
         self.sc_object = [None for i in range(len(self.model.df.index))]
 
 
@@ -14,11 +14,16 @@ class DataSource(TableDfBarDataSource):
         row = self.sc_object.index(sender)
         self.model.df[config.ATTENDANCE_COLUMN_NAME].loc[row] = config.OPTIONS[sender.selected_index]
 
+
+    def get_left(self, l, x):
+        max_index =self.model.visible_columns.index(x[0])
+        sub_list = l[:max_index]
+        return self.get_item_widths(sub_list) + 300
+    
     def get_sc(self, row):
         ov = OptionsView()
         sc = ov.get_sc()
         sc.action = self.record_selection
-        print(len(self.model.df.index))
         self.sc_object[row] = sc
         select_value = self.model.df[config.ATTENDANCE_COLUMN_NAME][row]
         if select_value:

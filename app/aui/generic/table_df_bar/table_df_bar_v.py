@@ -4,9 +4,9 @@ from app.aui.generic.table_df.table_df_v import TableDfView
 class TableDfBarView(TableDfView):
     def __init__(self, model, controller):
         super().__init__(model, controller)
-        self.table_size = (ui.get_screen_size()[0],int(ui.get_screen_size()[1] * 0.9))
+        self.table_size = (ui.get_screen_size()[0],int(ui.get_screen_size()[1] * 0.85))
         self.tv.width = self.table_size[0]
-        self.tv.height = self.table_size[1]
+        self.tv.height = int(self.table_size[1] * 0.85)
         self.tv.y =  75
         self.add_info_label()
         self.add_close_button()
@@ -36,4 +36,4 @@ class TableDfBarView(TableDfView):
         self.add_subview(self.info_label)
 
     def close_button_clicked(self, sender):
-        self.close()
+        self.controller.app_view.remove_subview(self)

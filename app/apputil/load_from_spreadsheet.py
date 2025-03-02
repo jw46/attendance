@@ -27,7 +27,8 @@ def save_if_not_exist(dates, excel):
 		return csv_path + ' - file already there, nothing done.'
 	else:
 		df = pd.DataFrame(dates, columns=[config.CLASS_DATES_COLUMN_NAME])
-		df[config.CLASS_TITLE_COLUMN_NAME] = pd.Series(dtype='str')
+		df[config.CLASS_TITLE_COLUMN_NAME1] = pd.Series(dtype='str')
+		df[config.CLASS_TITLE_COLUMN_NAME2] = pd.Series(dtype='str')
 		ds = data_saver.DataSaver()
 		ds.save(df, csv_path)
 		return csv_path + ' - saved to app data.'
@@ -37,7 +38,6 @@ def save_if_not_exist(dates, excel):
 def run():
 	excel_folder = util.get_spreadsheet_folder()
 	excel_list = os.listdir(excel_folder)
-	print(excel_list)
 	for excel in excel_list:
 		workbook = openpyxl.load_workbook(filename=util.get_spreadsheet_folder() + excel)
 		dates = get_class_dates(workbook)

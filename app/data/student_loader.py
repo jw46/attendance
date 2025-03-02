@@ -15,10 +15,10 @@ def load():
     if app_data.selected_group is None or app_data.selected_group == '':
         return None
     df = loader.open_df(util.get_group_folder() + app_data.selected_group + '.csv')
-    if config.STUDENT_NAME_COLUMN_NAME not in df:
-        df[config.STUDENT_NAME_COLUMN_NAME] = df.apply(lambda x: get_student_name(x['imie'], x['imie2'], x['nazwisko']), axis=1)
+    df[config.STUDENT_NAME_COLUMN_NAME] = df.apply(lambda x: get_student_name(x['imie'], x['imie2'], x['nazwisko']), axis=1)
     if config.ATTENDANCE_COLUMN_NAME not in df:
         df[config.ATTENDANCE_COLUMN_NAME] = None
+    df.drop(df.columns[df.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
     return df
     
 def load_one_student():
@@ -36,7 +36,7 @@ def load_one_student():
 
 def load_empty_student():
     data = {
-        'field': ['nazwisko', 'imie', 'imie2', 'skreslony', 'rezygnacja', 'email', 'indeks'],
-        'value': ['','','','','','','']
+        'field': ['nazwisko', 'imie', 'imie2', 'skreslony', 'rezygnacja', 'email', 'indeks', config.STUDENT_NAME_COLUMN_NAME, config.ATTENDANCE_COLUMN_NAME],
+        'value': ['','','','','','','','','']
     }
     return pd.DataFrame(data)
