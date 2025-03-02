@@ -21,17 +21,22 @@ def load():
         df[config.ATTENDANCE_COLUMN_NAME] = None
     return df
     
+def load_one_student():
+    if app_data.selected_student == None:
+        return None
+    df = load()
+    df2 = df.query(f'name == {app_data.selected_student}')
+    index = int(df2.index[0])
+    df3 = df2.transpose()
+    df3['field'] = df3.index
+    df3['value'] = df3[index]
+    df4 = df3[['field','value']]
+    df4.reset_index(drop=True, inplace=True)
+    return df4
 
-"""
-Given the latest filename of a group from the groups folder, searches the attenace forlder for a file already saved today for the group
-If any exist it returns a dataframe of the first from the list (there source never be more than one, but if there is it won't error)
-If none exist it loads the filename provided fro mthe groups folder
-"""
-# def get_students(self, group_file_name):
-#     att = os.listdir(util.get_att_folder())
-#     group_att = list(filter(lambda x: x.startswith(group_file_name[0:-14]), att))
-#     group_att_today = list(filter(lambda x: util.get_today() in x, group_att))
-#     if len(group_att_today) == 0:
-#         return loader.open_df(util.get_group_folder() + group_file_name)
-#     return loader.open_df(util.get_att_folder() + group_att_today[0])
-    
+def load_empty_student():
+    data = {
+        'field': ['nazwisko', 'imie', 'imie2', 'skreslony', 'rezygnacja', 'email', 'indeks'],
+        'value': ['','','','','','','']
+    }
+    return pd.DataFrame(data)
