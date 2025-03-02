@@ -1,7 +1,7 @@
 from app.aui.generic.abstract_delegate import AbstractDelegate
 
 
-class StudentChooserDelegate(AbstractDelegate):
+class Delegate(AbstractDelegate):
     def __init__(self, controller):
         super().__init__(controller)
 

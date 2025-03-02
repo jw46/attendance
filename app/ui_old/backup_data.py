@@ -1,5 +1,5 @@
 import time
-import app.data.data_loader as data_loader
+import app.data.groups_loader as groups_loader
 import app.views.parent.parent_view as parent_view
 from app.views.class_view.class_viewer import ClassViewer
 from app.views.student_selecter.student_viewer import StudentViewer

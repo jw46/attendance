@@ -7,7 +7,7 @@ class TestUtil(unittest.TestCase):
         print(result)
 
     def test_get_parent_path(self):
-        result = util.get_parent_path()
+        result = util.get_app_path()
         print(result)
 
     def test_get_today(self):

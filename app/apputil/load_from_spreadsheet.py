@@ -1,11 +1,11 @@
 import os
 import openpyxl
-import dialogs
+# import dialogs
 import pandas as pd
 from pathlib import Path
-import app.util.config as config
-import app.util.util as util
-import app.data.data_loader as data_loader
+import app.apputil.config as config
+import app.apputil.util as util
+import app.data.groups_loader as groups_loader
 import app.data.data_saver as data_saver
 
 def get_date_values(column, sheet):
@@ -19,10 +19,10 @@ def get_date_values(column, sheet):
 def get_class_dates(workbook):
 	sheet = workbook[workbook.sheetnames[1]]
 	class_dates = get_date_values(2, sheet) + get_date_values(7, sheet)
-	return class_dates
+	return set(class_dates)
 
 def save_if_not_exist(dates, excel):
-	csv_path = util.get_classes_folder() + excel.split('.')[0] + '.csv'
+	csv_path = util.get_classes_folder() + excel.replace('.xlsx','.csv')
 	if os.path.exists(csv_path):
 		return csv_path + ' - file already there, nothing done.'
 	else:
@@ -37,6 +37,7 @@ def save_if_not_exist(dates, excel):
 def run():
 	excel_folder = util.get_spreadsheet_folder()
 	excel_list = os.listdir(excel_folder)
+	print(excel_list)
 	for excel in excel_list:
 		workbook = openpyxl.load_workbook(filename=util.get_spreadsheet_folder() + excel)
 		dates = get_class_dates(workbook)

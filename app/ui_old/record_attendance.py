@@ -1,6 +1,6 @@
 import pandas as pd
 from app.views.student_selecter.student_viewer import StudentViewer
-from app.data.data_loader import DataLoader
+from app.data.groups_loader import DataLoader
 import app.apputil.config as config
 
 """
