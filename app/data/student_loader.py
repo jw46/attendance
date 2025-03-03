@@ -17,7 +17,7 @@ def load():
     df = loader.open_df(util.get_group_folder() + app_data.selected_group + '.csv')
     df[config.STUDENT_NAME_COLUMN_NAME] = df.apply(lambda x: get_student_name(x['imie'], x['imie2'], x['nazwisko']), axis=1)
     if config.ATTENDANCE_COLUMN_NAME not in df:
-        df[config.ATTENDANCE_COLUMN_NAME] = None
+        df[config.ATTENDANCE_COLUMN_NAME] = 'O'
     df.drop(df.columns[df.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
     return df
     

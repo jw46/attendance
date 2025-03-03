@@ -19,7 +19,7 @@ def get_date_values(column, sheet):
 def get_class_dates(workbook):
 	sheet = workbook[workbook.sheetnames[1]]
 	class_dates = get_date_values(2, sheet) + get_date_values(7, sheet)
-	return set(class_dates)
+	return sorted(set(class_dates))
 
 def save_if_not_exist(dates, excel):
 	csv_path = util.get_classes_folder() + excel.replace('.xlsx','.csv')

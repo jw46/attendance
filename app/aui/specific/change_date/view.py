@@ -4,11 +4,3 @@ class View(TableDfBarView):
     def __init__(self, model, controller):
         super().__init__(model, controller)
         self.tv.allows_selection = True
-
-
-    def close_button_clicked(self, sender):
-        pass
-        
-        
-
-    

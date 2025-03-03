@@ -6,7 +6,7 @@ import app.apputil.config as config
 
 class DataSource(TableDfBarDataSource):
     def __init__(self, model, table_size):
-        super().__init__(model, (int(table_size[0]), table_size[1] - 75))
+        super().__init__(model, (int(table_size[0]), table_size[1]))
         self.sc_object = [None for i in range(len(self.model.df.index))]
 
 

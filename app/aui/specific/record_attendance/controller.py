@@ -18,7 +18,7 @@ class Controller:
         table_size = (ui.get_screen_size()[0],int(ui.get_screen_size()[1] * 0.9))
         self.view.tv.delegate = Delegate(self)
         self.view.tv.width = table_size[0]
-        self.view.tv.height = table_size[1]
+        self.view.tv.height = table_size[1] - 150
         self.view.tv.data_source = DataSource(model, table_size)
         app_view.add_subview(self.view)
         self.view.wait_modal()
