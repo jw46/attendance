@@ -17,6 +17,10 @@ def string_to_date(s):
     f = "%Y-%m-%d"
     return datetime.strptime(s, f)
 
+def date_to_string(d):
+    f = "%Y-%m-%d"
+    return d.strftime(f)
+
 def get_app_path():
     path = Path(os.getcwd())
     return str(path.absolute())
@@ -35,6 +39,9 @@ def get_spreadsheet_folder():
 
 def get_classes_folder():
     return get_app_path() + config.CLASSES_FOLDER
+
+def get_temp_folder():
+    return get_app_path() + config.TEMP_FOLDER
 
 def get_documents_folder_path():
     return os.path.expanduser('~/Documents/')
