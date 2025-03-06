@@ -10,6 +10,9 @@ Returns today's date in the format in the filenames
 def get_today():
     return datetime.now().strftime("%Y-%m-%d")
 
+def get_timestamp():
+    return datetime.now().strftime("%Y%m%d%H%M%S")
+
 """
 Not needed because string ordering will work fine
 """
@@ -48,6 +51,11 @@ def get_documents_folder_path():
 
 def get_menu_filepath():
     return get_app_path() + '/metadata/menu.csv'
+
+def clean_temp():
+    files = os.listdir(get_temp_folder())
+    for f in files:
+        os.remove(get_temp_folder() + f)
 
 def get_bar_text():
     if app_data.selected_group is None:

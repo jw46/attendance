@@ -1,5 +1,7 @@
 import os
+from pathlib import Path
 import openpyxl
+import dialogs
 import app.apputil.util as util
 import app.data.app_data as app_data
 import app.data.class_loader as cl
@@ -83,8 +85,8 @@ def save_spreadsheet(workbook):
 	workbook.save(filename=filepath)
 	return filepath
 
-def share_sreadsheet():
-	pass
+def share_sreadsheet(filepath):
+	dialogs.share_url(Path(filepath).absolute().resolve().as_uri())
 
 def export():
 	workbook = load_template()
@@ -92,3 +94,4 @@ def export():
 	add_students(workbook)
 	add_attendance(workbook)
 	filepath = save_spreadsheet(workbook)
+	share_sreadsheet(filepath)
